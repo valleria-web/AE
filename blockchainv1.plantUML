@@ -1,0 +1,27 @@
+@startuml blockchainV1 
+
+class Blockchain {
+  - chain: List<Block>
+}
+
+class Miner {
+  - id: Int
+  - blockchain : Blockchain
+  - wallet : Wallet
+  + proofOfWork()
+}
+
+class Wallet  {
+  - publicKey: String
+  - balance : Int
+  - blockchain : Blockchain
+  + sendCoins() : int
+}
+
+class Block{
+}
+
+class Transactions {
+}
+
+@enduml
