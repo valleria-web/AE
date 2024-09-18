@@ -1,27 +1,64 @@
 @startuml blockchainV1 
 
 class Blockchain {
-  - chain: List<Block>
+  - chain: [{Block}]
+  + createGenesisBlock()
+  + getChain()
+  + addBlock()
+  + getLastBlock()
 }
 
 class Miner {
   - id: Int
   - blockchain : Blockchain
+  - mempool : Mempool
   - wallet : Wallet
+  + hashBlock()
   + proofOfWork()
+  + mineBlock()
+  + confirmTransactions()
+}
+
+class Coin{
+  - name : String
+  - ticker : String
+  - initialSupply : Int
+  - actualSupply : Int
+  - totalSupply : Int
+  + mintCoinbase() 
 }
 
 class Wallet  {
+  - blockchain : Blockchain
   - publicKey: String
   - balance : Int
-  - blockchain : Blockchain
-  + sendCoins() : int
+  + sendCoins()
 }
 
 class Block{
+  - index : Int
+  - timeStamp : Int
+  - nonce : Int
+  - hash : String
+  - previousBlockHash : String
+  - Transactions : [{Transaction}]
+  + static createBlock()
+  + addTransaction()
+  + getTransactions()
 }
 
 class Transactions {
+  - transactionID : String
+  - coinAmount : Int
+  - senderPublicKey : String
+  - receiverPublicKey : String
+  - isConfirmed : boolean
+}
+
+class Mempool{
+  - pendingTransactions : [{Transaction}]
+  + addTransaction()
+  + getPendingTransactions()
 }
 
 @enduml
